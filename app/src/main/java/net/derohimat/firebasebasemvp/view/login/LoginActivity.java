@@ -1,7 +1,6 @@
 package net.derohimat.firebasebasemvp.view.login;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -74,6 +73,11 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
         mPresenter.doLogin(email, password);
     }
 
+    @OnClick(R.id.txtRegister)
+    void onBtnRegisterClick() {
+        RegisterActivity.start(mContext);
+    }
+
     @Override
     protected void onDestroy() {
         mPresenter.detachView();
@@ -96,8 +100,7 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
     public void onEvent(LoginEvent event) {
         if (event.isSuccess()) {
 //            DialogFactory.createSimpleOkDialog(mContext, getString(R.string.app_name), event.getMessage()).show();
-            Intent intent = new Intent(mContext, RegisterActivity.class);
-            startActivity(intent);
+            RegisterActivity.start(mContext);
             finish();
         } else {
             DialogFactory.showErrorSnackBar(mContext, findViewById(android.R.id.content), new Throwable(event.getMessage())).show();

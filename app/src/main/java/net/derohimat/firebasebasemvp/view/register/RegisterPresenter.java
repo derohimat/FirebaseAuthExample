@@ -46,12 +46,12 @@ public class RegisterPresenter implements BasePresenter<RegisterMvpView> {
 //        if (mSubscription != null) mSubscription.unsubscribe();
     }
 
-    public void doRegister(String email, String phone, String password) {
+    void doRegister(String email, String password) {
         mView.showProgress();
 //        if (mSubscription != null) mSubscription.unsubscribe();
 
 //        FireAuthApplication baseApplication = FireAuthApplication.get(mView.getContext());
-        mFirebase.createUser(email, phone, new Firebase.ValueResultHandler<Map<String, Object>>() {
+        mFirebase.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
             @Override
             public void onSuccess(Map<String, Object> stringObjectMap) {
                 mView.hideProgress();

@@ -8,8 +8,8 @@
     <color name="app_window_bglight_color">#FFFFFF</color>
     <color name="app_text_unimportant">#8e8e8e</color>
     <color name="app_text_label">#656565</color>
-    <color name="app_base">@color/appcolor_blue</color>
-    <color name="app_base_dark">@color/appcolor_blue_dark</color>
+    <color name="app_base">@color/red</color>
+    <color name="app_base_dark">@color/red_dark</color>
 
     <color name="appcolor_blue">#039be5</color>
     <color name="appcolor_blue_dark">#028fd4</color>
@@ -21,8 +21,8 @@
     <!--<color name="colorPrimaryDark">@color/app_window_bglight_color</color>-->
     <!--<color name="colorAccent">@color/app_window_bglight_color</color>-->
     <!--<color name="colorAccentLighter">@color/appcolor_green</color>-->
-    <color name="colorPrimary">@color/app_base</color>
-    <color name="colorPrimaryDark">@color/app_base_dark</color>
+    <color name="colorPrimary">@color/red</color>
+    <color name="colorPrimaryDark">@color/red_dark</color>
     <color name="colorAccent">@color/app_window_bglight_color</color>
     <color name="colorAccentLighter">@color/appcolor_green</color>
 

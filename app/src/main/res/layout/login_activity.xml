@@ -3,8 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/colorPrimaryDark"
-              android:orientation="vertical"
-    >
+              android:orientation="vertical">
 
     <ImageView
         android:layout_width="100dp"
@@ -75,6 +74,7 @@
             android:text="Forgot your Password ?"/>
 
         <TextView
+            android:id="@+id/txtRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

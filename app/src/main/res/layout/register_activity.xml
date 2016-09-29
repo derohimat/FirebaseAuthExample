@@ -3,8 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/colorPrimaryDark"
-              android:orientation="vertical"
-    >
+              android:orientation="vertical">
 
     <ImageView
         android:layout_width="100dp"
@@ -28,6 +27,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/inpFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Full Name"
@@ -40,6 +40,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/inpEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -53,6 +54,7 @@
             android:layout_marginTop="@dimen/spacing_normal">
 
             <EditText
+                android:id="@+id/inpPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone Number"
@@ -66,6 +68,7 @@
             android:layout_marginTop="@dimen/spacing_normal">
 
             <EditText
+                android:id="@+id/inpPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
@@ -74,6 +77,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <Button
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_double"
