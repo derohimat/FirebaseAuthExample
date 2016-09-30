@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import net.derohimat.firebasebasemvp.R;
 import net.derohimat.firebasebasemvp.events.RegisterEvent;
 import net.derohimat.firebasebasemvp.util.DialogFactory;
+import net.derohimat.firebasebasemvp.util.Utils;
 import net.derohimat.firebasebasemvp.view.FireAuthBaseActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -73,6 +74,11 @@ public class RegisterActivity extends FireAuthBaseActivity implements RegisterMv
         }
         if (TextUtils.isEmpty(email)) {
             mInpEmail.setError("Email masih kosong");
+            mInpEmail.setFocusable(true);
+            return;
+        }
+        if (!Utils.isEmailValid(email)) {
+            mInpEmail.setError("Format Email salah");
             mInpEmail.setFocusable(true);
             return;
         }

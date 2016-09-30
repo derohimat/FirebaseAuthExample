@@ -27,6 +27,20 @@
             android:parentActivityName=".view.login.LoginActivity"
             android:theme="@style/AppTheme"
             tools:ignore="UnusedAttribute"/>
+        <activity
+            android:name=".view.forgot.ForgotActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:label="@string/app_name"
+            android:parentActivityName=".view.login.LoginActivity"
+            android:theme="@style/AppTheme"
+            tools:ignore="UnusedAttribute"/>
+        <activity
+            android:name=".view.main.MainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:label="@string/app_name"
+            android:parentActivityName=".view.login.LoginActivity"
+            android:theme="@style/AppTheme"
+            tools:ignore="UnusedAttribute"/>
     </application>
 
 </manifest>

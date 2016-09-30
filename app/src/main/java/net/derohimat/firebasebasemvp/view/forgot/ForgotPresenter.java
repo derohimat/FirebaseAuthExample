@@ -1,4 +1,4 @@
-package net.derohimat.firebasebasemvp.view.register;
+package net.derohimat.firebasebasemvp.view.forgot;
 
 import android.content.Context;
 
@@ -7,11 +7,10 @@ import com.firebase.client.FirebaseError;
 
 import net.derohimat.baseapp.presenter.BasePresenter;
 import net.derohimat.firebasebasemvp.FireAuthApplication;
+import net.derohimat.firebasebasemvp.events.ForgotEvent;
 import net.derohimat.firebasebasemvp.events.RegisterEvent;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -20,23 +19,23 @@ import timber.log.Timber;
 /**
  * Created by deroh on 23/05/2016.
  */
-public class RegisterPresenter implements BasePresenter<RegisterMvpView> {
+public class ForgotPresenter implements BasePresenter<ForgotMvpView> {
 
     @Inject
-    RegisterPresenter(Context context) {
+    ForgotPresenter(Context context) {
         ((FireAuthApplication) context.getApplicationContext()).getApplicationComponent().inject(this);
     }
 
     @Inject
-    Firebase mFirebase;
-    @Inject
     EventBus mEventBus;
+    @Inject
+    Firebase mFirebase;
 
-    private RegisterMvpView mView;
+    private ForgotMvpView mView;
 //    private Subscription mSubscription;
 
     @Override
-    public void attachView(RegisterMvpView view) {
+    public void attachView(ForgotMvpView view) {
         mView = view;
     }
 
@@ -46,24 +45,21 @@ public class RegisterPresenter implements BasePresenter<RegisterMvpView> {
 //        if (mSubscription != null) mSubscription.unsubscribe();
     }
 
-    void doRegister(String email, String password) {
+    void resetPassword(String email) {
         mView.showProgress();
-//        if (mSubscription != null) mSubscription.unsubscribe();
-
-//        FireAuthApplication baseApplication = FireAuthApplication.get(mView.getContext());
-        mFirebase.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
+        mFirebase.resetPassword(email, new Firebase.ResultHandler() {
             @Override
-            public void onSuccess(Map<String, Object> stringObjectMap) {
+            public void onSuccess() {
                 mView.hideProgress();
-                mEventBus.post(new RegisterEvent(true, "Successfully created user"));
-                Timber.e("Successfully created user account with uid: " + stringObjectMap.get("uid"));
+                mEventBus.post(new ForgotEvent(true, "Reset password successfully, Please check your email"));
+                Timber.e("Reset password successfully, Please check your email");
             }
 
             @Override
             public void onError(FirebaseError firebaseError) {
                 mView.hideProgress();
                 mEventBus.post(new RegisterEvent(false, firebaseError.getMessage()));
-                Timber.e("Unsuccessfully Register : " + firebaseError.getMessage());
+                Timber.e("Unsuccessfully Reset Password : " + firebaseError.getMessage());
             }
         });
     }

@@ -5,7 +5,7 @@ import net.derohimat.firebasebasemvp.view.MvpView;
 /**
  * Created by deroh on 23/05/2016.
  */
-public interface LoginMvpView extends MvpView {
+interface LoginMvpView extends MvpView {
 
     void showProgress();
 

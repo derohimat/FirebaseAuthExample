@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/LightGrey"
+              android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_normal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/spacing_triple"
+        android:layout_marginRight="@dimen/spacing_triple"
+        android:layout_marginTop="@dimen/spacing_huge"
+        android:background="@color/silver"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_double"
+        android:layout_marginRight="@dimen/spacing_double"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_double">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_double"
+            android:text="This is your Profile Information"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/inpEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="Email"
+                android:inputType="text"/>
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
