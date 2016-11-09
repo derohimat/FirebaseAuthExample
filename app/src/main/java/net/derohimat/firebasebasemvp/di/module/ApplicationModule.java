@@ -1,6 +1,6 @@
 package net.derohimat.firebasebasemvp.di.module;
 
-import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import net.derohimat.firebasebasemvp.FireAuthApplication;
 import net.derohimat.firebasebasemvp.data.local.PreferencesHelper;
@@ -29,8 +29,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Firebase provideFireBase() {
-        return new Firebase("https://radiant-fire-6599.firebaseio.com/");
+    FirebaseAuth provideFireBaseAuth() {
+        return FirebaseAuth.getInstance();
     }
 
     @Provides

@@ -1,10 +1,10 @@
 package net.derohimat.firebasebasemvp.view.login;
 
+import android.app.Activity;
 import android.content.Context;
 
-import com.firebase.client.AuthData;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import net.derohimat.baseapp.presenter.BasePresenter;
 import net.derohimat.firebasebasemvp.FireAuthApplication;
@@ -18,7 +18,7 @@ import javax.inject.Inject;
 import timber.log.Timber;
 
 /**
- * Created by deroh on 23/05/2016.
+ * Created by derohimat on 23/05/2016.
  */
 public class LoginPresenter implements BasePresenter<LoginMvpView> {
 
@@ -30,16 +30,25 @@ public class LoginPresenter implements BasePresenter<LoginMvpView> {
     @Inject
     EventBus mEventBus;
     @Inject
-    Firebase mFirebase;
+    FirebaseAuth mAuth;
     @Inject
     PreferencesHelper mPreferencesHelper;
 
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private LoginMvpView mView;
 //    private Subscription mSubscription;
 
     @Override
     public void attachView(LoginMvpView view) {
         mView = view;
+        mAuthListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                Timber.d("user signed in", user.getDisplayName());
+            } else {
+                Timber.d("user signed out");
+            }
+        };
     }
 
     @Override
@@ -48,27 +57,31 @@ public class LoginPresenter implements BasePresenter<LoginMvpView> {
 //        if (mSubscription != null) mSubscription.unsubscribe();
     }
 
-    void doLogin(String username, String password) {
+    void doLogin(Context context, String username, String password) {
         mView.showProgress();
 //        if (mSubscription != null) mSubscription.unsubscribe();
 
-//        FireAuthApplication baseApplication = FireAuthApplication.get(mView.getContext());
-        mFirebase.authWithPassword(username, password, new Firebase.AuthResultHandler() {
-            @Override
-            public void onAuthenticated(AuthData authData) {
-                mView.hideProgress();
-                mPreferencesHelper.setUserId(authData.getUid());
-                mEventBus.post(new LoginEvent(true, "success"));
-                Timber.e("Successfully logged in user account with uid: " + authData.getUid());
-            }
+        mAuth.signInWithEmailAndPassword(username, password)
+                .addOnCompleteListener((Activity) context, task -> {
+                    if (!task.isSuccessful()) {
+                        mEventBus.post(new LoginEvent(false, task.getException().getMessage()));
+                    } else {
+                        mPreferencesHelper.setUserId(task.getResult().getUser().getProviderId());
+                        mEventBus.post(new LoginEvent(true, "Success"));
+                    }
 
-            @Override
-            public void onAuthenticationError(FirebaseError firebaseError) {
-                mView.hideProgress();
-                mEventBus.post(new LoginEvent(false, firebaseError.getMessage()));
-                Timber.e("Unsuccessfully Login : " + firebaseError.getMessage());
-            }
-        });
+                });
     }
 
+    void removeAuthListener() {
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    void addAuthListener() {
+        if (mAuthListener != null) {
+            mAuth.addAuthStateListener(mAuthListener);
+        }
+    }
 }

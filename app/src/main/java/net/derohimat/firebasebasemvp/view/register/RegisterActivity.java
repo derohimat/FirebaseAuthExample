@@ -23,7 +23,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * Created by deroh on 23/05/2016.
+ * Created by derohimat on 23/05/2016.
  */
 public class RegisterActivity extends FireAuthBaseActivity implements RegisterMvpView {
 
@@ -92,7 +92,7 @@ public class RegisterActivity extends FireAuthBaseActivity implements RegisterMv
             mInpPassword.setFocusable(true);
             return;
         }
-        mPresenter.doRegister(email, password);
+        mPresenter.doRegister(mContext, email, password);
     }
 
     @Override
@@ -105,18 +105,23 @@ public class RegisterActivity extends FireAuthBaseActivity implements RegisterMv
     public void onStart() {
         super.onStart();
         eventBus.register(this);
+        mPresenter.addAuthListener();
     }
 
     @Override
     public void onStop() {
-        eventBus.unregister(this);
         super.onStop();
+        eventBus.unregister(this);
+        mPresenter.removeAuthListener();
     }
 
     @Subscribe
     public void onEvent(RegisterEvent event) {
         if (event.isSuccess()) {
-            DialogFactory.createSimpleOkDialog(mContext, getString(R.string.app_name), event.getMessage()).show();
+            DialogFactory.createSimpleOkDialog(mContext, getString(R.string.app_name),
+                    event.getMessage(), (dialog, which) ->
+                            finish()
+            ).show();
         } else {
             DialogFactory.showErrorSnackBar(mContext, findViewById(android.R.id.content), new Throwable(event.getMessage())).show();
         }

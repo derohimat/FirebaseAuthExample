@@ -25,7 +25,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * Created by deroh on 23/05/2016.
+ * Created by derohimat on 23/05/2016.
  */
 public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView {
 
@@ -78,7 +78,7 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
             mInpPassword.setFocusable(true);
             return;
         }
-        mPresenter.doLogin(email, password);
+        mPresenter.doLogin(mContext, email, password);
     }
 
     @OnClick(R.id.txtForgot)
@@ -101,12 +101,14 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
     public void onStart() {
         super.onStart();
         eventBus.register(this);
+        mPresenter.addAuthListener();
     }
 
     @Override
     public void onStop() {
-        eventBus.unregister(this);
         super.onStop();
+        eventBus.unregister(this);
+        mPresenter.removeAuthListener();
     }
 
     @Subscribe

@@ -8,37 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:158532328879:android:92b0ce68973b78be",
-        "android_client_info": {
-          "package_name": "net.derohimat.mewash"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "158532328879-hpdfr60lg239ru56l72ud2uatu2p9occ.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDUjQiazGXC11KWHf59AhQFfJCREjoC3Oo"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:158532328879:android:c3aba74035af7052",
         "android_client_info": {
           "package_name": "net.derohimat.firebaseauthsample"
@@ -76,6 +45,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "158532328879-3l91k6sv45eu6knc2i778e0c4pdfaok6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.derohimat.firebasebasemvp",
+            "certificate_hash": "293020DB324B987FEE72690DF4ED69F3A9F750D4"
+          }
+        },
         {
           "client_id": "158532328879-hpdfr60lg239ru56l72ud2uatu2p9occ.apps.googleusercontent.com",
           "client_type": 3

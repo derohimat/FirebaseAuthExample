@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.support.annotation.VisibleForTesting;
 
-import com.firebase.client.Firebase;
-
 import net.derohimat.firebasebasemvp.di.component.ApplicationComponent;
 import net.derohimat.firebasebasemvp.di.component.DaggerApplicationComponent;
 import net.derohimat.firebasebasemvp.di.module.ApplicationModule;
@@ -29,7 +27,6 @@ public class FireAuthApplication extends Application {
         if (isDebuggable) {
             Timber.plant(new Timber.DebugTree());
         }
-        Firebase.setAndroidContext(this);
 
         mApplicationComponent = DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
 

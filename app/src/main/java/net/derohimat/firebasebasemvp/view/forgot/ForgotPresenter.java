@@ -1,9 +1,9 @@
 package net.derohimat.firebasebasemvp.view.forgot;
 
+import android.app.Activity;
 import android.content.Context;
 
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.google.firebase.auth.FirebaseAuth;
 
 import net.derohimat.baseapp.presenter.BasePresenter;
 import net.derohimat.firebasebasemvp.FireAuthApplication;
@@ -29,7 +29,7 @@ public class ForgotPresenter implements BasePresenter<ForgotMvpView> {
     @Inject
     EventBus mEventBus;
     @Inject
-    Firebase mFirebase;
+    FirebaseAuth mFirebase;
 
     private ForgotMvpView mView;
 //    private Subscription mSubscription;
@@ -45,23 +45,20 @@ public class ForgotPresenter implements BasePresenter<ForgotMvpView> {
 //        if (mSubscription != null) mSubscription.unsubscribe();
     }
 
-    void resetPassword(String email) {
+    void resetPassword(Context context, String email) {
         mView.showProgress();
-        mFirebase.resetPassword(email, new Firebase.ResultHandler() {
-            @Override
-            public void onSuccess() {
-                mView.hideProgress();
-                mEventBus.post(new ForgotEvent(true, "Reset password successfully, Please check your email"));
-                Timber.e("Reset password successfully, Please check your email");
-            }
+        mFirebase.sendPasswordResetEmail(email)
+                .addOnCompleteListener((Activity) context, task -> {
+                    mView.hideProgress();
 
-            @Override
-            public void onError(FirebaseError firebaseError) {
-                mView.hideProgress();
-                mEventBus.post(new RegisterEvent(false, firebaseError.getMessage()));
-                Timber.e("Unsuccessfully Reset Password : " + firebaseError.getMessage());
-            }
-        });
+                    if (!task.isSuccessful()) {
+                        mEventBus.post(new RegisterEvent(false, task.getException().getMessage()));
+                        Timber.e("Unsuccessfully Reset Password : " + task.getException().getMessage());
+                    } else {
+                        mEventBus.post(new ForgotEvent(true, "Reset password successfully, Please check your email"));
+                        Timber.e("Reset password successfully, Please check your email");
+                    }
+                });
     }
 
 }

@@ -20,6 +20,14 @@ import net.derohimat.firebasebasemvp.R;
 
 public final class DialogFactory {
 
+    public static Dialog createSimpleOkDialog(Context context, String title, String message, AlertDialog.OnClickListener listener) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(message)
+                .setNeutralButton(R.string.dialog_action_ok, listener);
+        return alertDialog.create();
+    }
+
     public static Dialog createSimpleOkDialog(Context context, String title, String message) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
                 .setTitle(title)

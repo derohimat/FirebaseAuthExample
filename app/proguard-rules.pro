@@ -122,3 +122,7 @@
 -keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**
 -keep class **$$ViewBinder { *; }
+
+#firebase auth
+-keepattributes Signature
+-keepattributes *Annotation*

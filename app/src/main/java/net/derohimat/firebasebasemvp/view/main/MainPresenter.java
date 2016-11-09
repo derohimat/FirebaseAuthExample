@@ -2,14 +2,16 @@ package net.derohimat.firebasebasemvp.view.main;
 
 import android.content.Context;
 
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import net.derohimat.baseapp.presenter.BasePresenter;
 import net.derohimat.firebasebasemvp.FireAuthApplication;
 import net.derohimat.firebasebasemvp.data.local.PreferencesHelper;
 
 import javax.inject.Inject;
+
+import timber.log.Timber;
 
 /**
  * Created by deroh on 23/05/2016.
@@ -22,10 +24,11 @@ public class MainPresenter implements BasePresenter<MainMvpView> {
     }
 
     @Inject
-    Firebase mFirebase;
+    FirebaseAuth mAuth;
     @Inject
     PreferencesHelper mPreferencesHelper;
 
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private MainMvpView mView;
 //    private Subscription mSubscription;
 
@@ -40,18 +43,30 @@ public class MainPresenter implements BasePresenter<MainMvpView> {
 //        if (mSubscription != null) mSubscription.unsubscribe();
     }
 
-    void resetPassword(String email) {
-        mFirebase.resetPassword(email, new Firebase.ResultHandler() {
-            @Override
-            public void onSuccess() {
+    void getUserData() {
+        mView.showProgress();
 
+        mAuthListener = firebaseAuth -> {
+            mView.hideProgress();
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                mView.getUserData(user);
+                Timber.d("user signed in", user.getEmail());
+            } else {
+                Timber.d("user signed out");
             }
-
-            @Override
-            public void onError(FirebaseError firebaseError) {
-
-            }
-        });
+        };
     }
 
+    void removeAuthListener() {
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    void addAuthListener() {
+        if (mAuthListener != null) {
+            mAuth.addAuthStateListener(mAuthListener);
+        }
+    }
 }

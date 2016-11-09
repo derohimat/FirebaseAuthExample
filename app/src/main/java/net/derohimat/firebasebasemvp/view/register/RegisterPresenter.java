@@ -1,9 +1,10 @@
 package net.derohimat.firebasebasemvp.view.register;
 
+import android.app.Activity;
 import android.content.Context;
 
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import net.derohimat.baseapp.presenter.BasePresenter;
 import net.derohimat.firebasebasemvp.FireAuthApplication;
@@ -11,14 +12,12 @@ import net.derohimat.firebasebasemvp.events.RegisterEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.Map;
-
 import javax.inject.Inject;
 
 import timber.log.Timber;
 
 /**
- * Created by deroh on 23/05/2016.
+ * Created by derohimat on 23/05/2016.
  */
 public class RegisterPresenter implements BasePresenter<RegisterMvpView> {
 
@@ -28,16 +27,25 @@ public class RegisterPresenter implements BasePresenter<RegisterMvpView> {
     }
 
     @Inject
-    Firebase mFirebase;
+    FirebaseAuth mAuth;
     @Inject
     EventBus mEventBus;
 
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private RegisterMvpView mView;
 //    private Subscription mSubscription;
 
     @Override
     public void attachView(RegisterMvpView view) {
         mView = view;
+        mAuthListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                Timber.d("user signed in", user.getDisplayName());
+            } else {
+                Timber.d("user signed out");
+            }
+        };
     }
 
     @Override
@@ -46,26 +54,33 @@ public class RegisterPresenter implements BasePresenter<RegisterMvpView> {
 //        if (mSubscription != null) mSubscription.unsubscribe();
     }
 
-    void doRegister(String email, String password) {
+    void doRegister(Context context, String email, String password) {
         mView.showProgress();
 //        if (mSubscription != null) mSubscription.unsubscribe();
 
-//        FireAuthApplication baseApplication = FireAuthApplication.get(mView.getContext());
-        mFirebase.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
-            @Override
-            public void onSuccess(Map<String, Object> stringObjectMap) {
-                mView.hideProgress();
-                mEventBus.post(new RegisterEvent(true, "Successfully created user"));
-                Timber.e("Successfully created user account with uid: " + stringObjectMap.get("uid"));
-            }
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener((Activity) context, task -> {
+                    mView.hideProgress();
+                    if (!task.isSuccessful()) {
+                        mEventBus.post(new RegisterEvent(false, task.getException().getMessage()));
+                        Timber.e("Unsuccessfully Register : " + task.getException().getMessage());
+                    } else {
+                        mEventBus.post(new RegisterEvent(true, "Successfully created user"));
+                        Timber.d("Successfully created user account with uid: " + task.getResult().getUser().getUid());
+                    }
+                });
+    }
 
-            @Override
-            public void onError(FirebaseError firebaseError) {
-                mView.hideProgress();
-                mEventBus.post(new RegisterEvent(false, firebaseError.getMessage()));
-                Timber.e("Unsuccessfully Register : " + firebaseError.getMessage());
-            }
-        });
+    void removeAuthListener() {
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    void addAuthListener() {
+        if (mAuthListener != null) {
+            mAuth.addAuthStateListener(mAuthListener);
+        }
     }
 
 }

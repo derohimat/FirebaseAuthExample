@@ -95,7 +95,7 @@ public class ForgotActivity extends FireAuthBaseActivity implements ForgotMvpVie
             mInpEmail.setFocusable(true);
             return;
         }
-        mPresenter.resetPassword(email);
+        mPresenter.resetPassword(mContext, email);
     }
 
     @Override

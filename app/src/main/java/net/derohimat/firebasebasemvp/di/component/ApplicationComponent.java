@@ -1,6 +1,6 @@
 package net.derohimat.firebasebasemvp.di.component;
 
-import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import net.derohimat.firebasebasemvp.FireAuthApplication;
 import net.derohimat.firebasebasemvp.data.local.PreferencesHelper;
@@ -30,10 +30,10 @@ public interface ApplicationComponent {
 
     void inject(FireAuthApplication baseApplication);
 
-    Firebase fireBase();
-
     EventBus eventBus();
 
     PreferencesHelper prefsHelper();
+
+    FirebaseAuth firebaseAuth();
 
 }

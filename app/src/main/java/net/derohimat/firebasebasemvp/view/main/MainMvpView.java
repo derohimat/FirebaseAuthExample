@@ -1,5 +1,7 @@
 package net.derohimat.firebasebasemvp.view.main;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import net.derohimat.firebasebasemvp.view.MvpView;
 
 /**
@@ -10,4 +12,6 @@ interface MainMvpView extends MvpView {
     void showProgress();
 
     void hideProgress();
+
+    void getUserData(FirebaseUser firebaseUser);
 }

@@ -3,7 +3,7 @@ package net.derohimat.firebasebasemvp.view.register;
 import net.derohimat.firebasebasemvp.view.MvpView;
 
 /**
- * Created by deroh on 23/05/2016.
+ * Created by derohimat on 23/05/2016.
  */
 interface RegisterMvpView extends MvpView {
 
