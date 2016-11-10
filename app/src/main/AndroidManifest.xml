@@ -51,6 +51,9 @@
         <activity android:name="com.facebook.FacebookActivity" />
 
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="004b0c58c93bfcf87cc47e445c03c547b2c3e19a" />
     </application>
 
 </manifest>

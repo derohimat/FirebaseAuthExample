@@ -13,6 +13,11 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import net.derohimat.firebasebasemvp.R;
 import net.derohimat.firebasebasemvp.events.LoginEvent;
@@ -43,6 +48,8 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
     EditText mInpPassword;
     @Bind(R.id.login_button)
     LoginButton mLoginFbButton;
+    @Bind(R.id.twitter_login)
+    TwitterLoginButton mTwitterLoginButton;
     private LoginPresenter mPresenter;
     ProgressBar mProgressBar = null;
 
@@ -64,6 +71,7 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
         getBaseActionBar().hide();
 
         initFbLoginButton();
+        initTwitterLoginButton();
     }
 
     @Override
@@ -173,9 +181,27 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
     }
 
     @Override
+    public void initTwitterLoginButton() {
+        mTwitterLoginButton.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void success(Result<TwitterSession> result) {
+                // Do something with result, which provides a TwitterSession for making API calls
+                mPresenter.handleTwitterSession(result.data);
+            }
+
+            @Override
+            public void failure(TwitterException exception) {
+                // Do something on failure
+                DialogFactory.showErrorSnackBar(mContext, findViewById(android.R.id.content), new Throwable(exception.getMessage())).show();
+            }
+        });
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        mTwitterLoginButton.onActivityResult(requestCode, resultCode, data);
     }
 
     public static void start(Context context) {

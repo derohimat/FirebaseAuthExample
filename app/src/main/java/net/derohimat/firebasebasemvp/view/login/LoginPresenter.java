@@ -8,6 +8,8 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.TwitterAuthProvider;
+import com.twitter.sdk.android.core.TwitterSession;
 
 import net.derohimat.baseapp.presenter.BasePresenter;
 import net.derohimat.firebasebasemvp.FireAuthApplication;
@@ -91,7 +93,7 @@ public class LoginPresenter implements BasePresenter<LoginMvpView> {
                     Timber.d("signInWithCredential:onComplete:" + task.isSuccessful());
 
                     if (!task.isSuccessful()) {
-                        Timber.w("signInWithCredential", task.getException());
+                        Timber.w("signInWithFbCredential", task.getException());
                         mEventBus.post(new LoginEvent(false, "Fb Auth Failed : " + task.getException().getMessage()));
                     } else {
                         Timber.w("signInWithFbCredential", "success with email " + task.getResult().getUser().getEmail());
@@ -99,6 +101,31 @@ public class LoginPresenter implements BasePresenter<LoginMvpView> {
                     }
                 });
     }
+
+    void handleTwitterSession(TwitterSession session) {
+        Timber.d("handleTwitterSession:" + session);
+
+        AuthCredential credential = TwitterAuthProvider.getCredential(
+                session.getAuthToken().token,
+                session.getAuthToken().secret);
+
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener((Activity) mContext, task -> {
+                    Timber.d("signInWithCredential:onComplete:" + task.isSuccessful());
+
+                    // If sign in fails, display a message to the user. If sign in succeeds
+                    // the auth state listener will be notified and logic to handle the
+                    // signed in user can be handled in the listener.
+                    if (!task.isSuccessful()) {
+                        Timber.w("signInWithTwitterCredential", task.getException());
+                        mEventBus.post(new LoginEvent(false, "Twitter Auth Failed : " + task.getException().getMessage()));
+                    } else {
+                        Timber.w("signInWithTwitterCredential", "success with email " + task.getResult().getUser().getEmail());
+                        mEventBus.post(new LoginEvent(true, "Twitter Auth Success"));
+                    }
+                });
+    }
+
 
     void removeAuthListener() {
         if (mAuthListener != null) {

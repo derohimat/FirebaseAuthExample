@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
 
 apply from: '../config/quality.gradle'
 
@@ -64,12 +65,28 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 dependencies {
     final DAGGER_VERSION = '2.7'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
+    //Base MVP
     compile 'com.github.derohimat:android-base-mvp:0.4'
+
     //----- Dagger
     compile "com.google.dagger:dagger:$DAGGER_VERSION"
     apt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
@@ -81,14 +98,19 @@ dependencies {
 
     //----- Easy Permission Management
     compile 'com.karumi:dexter:2.2.2'
-    
+
     //----- The core of Reactive Programming
     compile 'io.reactivex:rxjava:1.1.9'
     compile 'io.reactivex:rxandroid:1.2.1'
-    
+
     //Firebase
     compile 'com.google.firebase:firebase-auth:9.8.0'
 
     //Facebook
     compile 'com.facebook.android:facebook-android-sdk:4.9.0'
+
+    //Twitter
+    compile('com.twitter.sdk.android:twitter:2.1.1@aar') {
+        transitive = true;
+    }
 }

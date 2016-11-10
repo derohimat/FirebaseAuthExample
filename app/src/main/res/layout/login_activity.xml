@@ -89,6 +89,13 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/spacing_normal"/>
 
+                <com.twitter.sdk.android.core.identity.TwitterLoginButton
+                    android:id="@+id/twitter_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_normal"/>
+
                 <TextView
                     android:id="@+id/txtForgot"
                     android:layout_width="wrap_content"

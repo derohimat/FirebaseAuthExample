@@ -12,4 +12,6 @@ interface LoginMvpView extends MvpView {
     void hideProgress();
 
     void initFbLoginButton();
+
+    void initTwitterLoginButton();
 }

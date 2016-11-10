@@ -7,6 +7,9 @@ import android.support.annotation.VisibleForTesting;
 
 import com.facebook.FacebookSdk;
 
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import io.fabric.sdk.android.Fabric;
 import net.derohimat.firebasebasemvp.di.component.ApplicationComponent;
 import net.derohimat.firebasebasemvp.di.component.DaggerApplicationComponent;
 import net.derohimat.firebasebasemvp.di.module.ApplicationModule;
@@ -17,12 +20,19 @@ import timber.log.Timber;
 
 public class FireAuthApplication extends Application {
 
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "cjFEI2GuVFXLu6d7rBfdSC0AY";
+    private static final String TWITTER_SECRET = "oJYpBck1O0nLZ4fsIUY6S8HwXaDqOWVy4GbavKifM0iocIauIl";
+
+
     private Scheduler mScheduler;
     private ApplicationComponent mApplicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
