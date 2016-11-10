@@ -91,6 +91,7 @@ public class MainActivity extends FireAuthBaseActivity implements MainMvpView {
     void logoutCLick() {
         mPresenter.doLogout();
         LoginActivity.start(mContext);
+        finish();
     }
 
     public static void start(Context context) {
