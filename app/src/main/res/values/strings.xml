@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Firebase Auth Example</string>
 
+    <string name="facebook_app_id">1603090573327858</string>
+
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_delete">Delete</string>
     <string name="dialog_action_cancel">Cancel</string>

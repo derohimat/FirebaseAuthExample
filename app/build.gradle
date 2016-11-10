@@ -88,4 +88,7 @@ dependencies {
     
     //Firebase
     compile 'com.google.firebase:firebase-auth:9.8.0'
+
+    //Facebook
+    compile 'com.facebook.android:facebook-android-sdk:4.9.0'
 }

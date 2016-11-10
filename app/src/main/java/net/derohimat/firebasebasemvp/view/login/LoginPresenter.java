@@ -3,6 +3,9 @@ package net.derohimat.firebasebasemvp.view.login;
 import android.app.Activity;
 import android.content.Context;
 
+import com.facebook.AccessToken;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,6 +27,7 @@ public class LoginPresenter implements BasePresenter<LoginMvpView> {
 
     @Inject
     LoginPresenter(Context context) {
+        mContext = context;
         ((FireAuthApplication) context.getApplicationContext()).getApplicationComponent().inject(this);
     }
 
@@ -34,6 +38,7 @@ public class LoginPresenter implements BasePresenter<LoginMvpView> {
     @Inject
     PreferencesHelper mPreferencesHelper;
 
+    private Context mContext;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private LoginMvpView mView;
 //    private Subscription mSubscription;
@@ -71,6 +76,27 @@ public class LoginPresenter implements BasePresenter<LoginMvpView> {
                         mEventBus.post(new LoginEvent(true, "Success"));
                     }
 
+                });
+    }
+
+    void handleFacebookAccessToken(AccessToken token) {
+        mView.showProgress();
+        Timber.d("handleFacebookAccessToken:" + token);
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener((Activity) mContext, task -> {
+                    mView.hideProgress();
+
+                    Timber.d("signInWithCredential:onComplete:" + task.isSuccessful());
+
+                    if (!task.isSuccessful()) {
+                        Timber.w("signInWithCredential", task.getException());
+                        mEventBus.post(new LoginEvent(false, "Fb Auth Failed : " + task.getException().getMessage()));
+                    } else {
+                        Timber.w("signInWithFbCredential", "success with email " + task.getResult().getUser().getEmail());
+                        mEventBus.post(new LoginEvent(true, "Fb Auth Success"));
+                    }
                 });
     }
 

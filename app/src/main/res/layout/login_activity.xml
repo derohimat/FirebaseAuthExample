@@ -5,83 +5,108 @@
               android:background="@color/LightGrey"
               android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/spacing_double"
-        android:layout_marginTop="@dimen/spacing_triple"
-        android:src="@mipmap/ic_launcher"/>
-
-    <View
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_normal"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="@dimen/spacing_triple"
-        android:layout_marginRight="@dimen/spacing_triple"
-        android:background="@color/silver"/>
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/spacing_double"
-        android:layout_marginRight="@dimen/spacing_double"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_double">
-
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/inpEmail"
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:src="@mipmap/ic_launcher"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_normal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/spacing_triple"
+                android:layout_marginRight="@dimen/spacing_triple"
+                android:background="@color/silver"/>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:imeOptions="actionNext"
-                android:inputType="text"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginLeft="@dimen/spacing_double"
+                android:layout_marginRight="@dimen/spacing_double"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_double">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/inpPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"/>
-        </android.support.design.widget.TextInputLayout>
+                    <EditText
+                        android:id="@+id/inpEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"/>
+                </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_double"
-            android:background="@color/colorPrimary"
-            android:text="Login"
-            android:textColor="@color/white"/>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal">
 
-        <TextView
-            android:id="@+id/txtForgot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/spacing_double"
-            android:text="Forgot your Password ?"/>
+                    <EditText
+                        android:id="@+id/inpPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"/>
+                </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/txtRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="Register here"
-            android:textColor="@color/colorPrimaryDark"/>
-    </LinearLayout>
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_double"
+                    android:background="@color/colorPrimary"
+                    android:text="Login"
+                    android:textColor="@color/white"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="Social Media Login"/>
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/login_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_normal"/>
+
+                <TextView
+                    android:id="@+id/txtForgot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_double"
+                    android:text="Forgot your Password ?"/>
+
+                <TextView
+                    android:id="@+id/txtRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="Register here"
+                    android:textColor="@color/colorPrimaryDark"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

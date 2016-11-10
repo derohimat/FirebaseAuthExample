@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.support.annotation.VisibleForTesting;
 
+import com.facebook.FacebookSdk;
+
 import net.derohimat.firebasebasemvp.di.component.ApplicationComponent;
 import net.derohimat.firebasebasemvp.di.component.DaggerApplicationComponent;
 import net.derohimat.firebasebasemvp.di.module.ApplicationModule;
@@ -21,6 +23,8 @@ public class FireAuthApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         boolean isDebuggable = (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
 

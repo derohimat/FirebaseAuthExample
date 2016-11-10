@@ -8,6 +8,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
 import net.derohimat.firebasebasemvp.R;
 import net.derohimat.firebasebasemvp.events.LoginEvent;
 import net.derohimat.firebasebasemvp.util.DialogFactory;
@@ -24,6 +30,7 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 /**
  * Created by derohimat on 23/05/2016.
@@ -34,11 +41,14 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
     EditText mInpEmail;
     @Bind(R.id.inpPassword)
     EditText mInpPassword;
+    @Bind(R.id.login_button)
+    LoginButton mLoginFbButton;
     private LoginPresenter mPresenter;
-    private static ProgressBar mProgressBar = null;
+    ProgressBar mProgressBar = null;
 
     @Inject
     EventBus eventBus;
+    private CallbackManager mCallbackManager;
 
     @Override
     protected int getResourceLayout() {
@@ -52,6 +62,8 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
 
         getBaseActionBar().setElevation(0);
         getBaseActionBar().hide();
+
+        initFbLoginButton();
     }
 
     @Override
@@ -135,6 +147,35 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
     @Override
     public void hideProgress() {
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void initFbLoginButton() {
+        mCallbackManager = CallbackManager.Factory.create();
+        mLoginFbButton.setReadPermissions("email", "public_profile");
+        mLoginFbButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Timber.d("facebook:onSuccess:" + loginResult);
+                mPresenter.handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Timber.d("facebook:onCancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Timber.d("facebook:onError", error);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     public static void start(Context context) {

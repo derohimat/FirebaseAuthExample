@@ -10,4 +10,6 @@ interface LoginMvpView extends MvpView {
     void showProgress();
 
     void hideProgress();
+
+    void initFbLoginButton();
 }
