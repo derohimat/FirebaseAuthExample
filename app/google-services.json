@@ -1,66 +1,27 @@
 {
   "project_info": {
-    "project_number": "158532328879",
-    "firebase_url": "https://radiant-fire-6599.firebaseio.com",
-    "project_id": "radiant-fire-6599",
-    "storage_bucket": "radiant-fire-6599.appspot.com"
+    "project_number": "220844465981",
+    "firebase_url": "https://fir-auth-b9480.firebaseio.com",
+    "project_id": "fir-auth-b9480",
+    "storage_bucket": "fir-auth-b9480.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:158532328879:android:c3aba74035af7052",
-        "android_client_info": {
-          "package_name": "net.derohimat.firebaseauthsample"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "158532328879-hpdfr60lg239ru56l72ud2uatu2p9occ.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDUjQiazGXC11KWHf59AhQFfJCREjoC3Oo"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:158532328879:android:d1a82c393e902d2c",
+        "mobilesdk_app_id": "1:220844465981:android:d1a82c393e902d2c",
         "android_client_info": {
           "package_name": "net.derohimat.firebasebasemvp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "158532328879-3l91k6sv45eu6knc2i778e0c4pdfaok6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "net.derohimat.firebasebasemvp",
-            "certificate_hash": "293020DB324B987FEE72690DF4ED69F3A9F750D4"
-          }
-        },
-        {
-          "client_id": "158532328879-hpdfr60lg239ru56l72ud2uatu2p9occ.apps.googleusercontent.com",
+          "client_id": "220844465981-712gdhsl4q5qik4g8b5mm6gdbsnhfbb1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDUjQiazGXC11KWHf59AhQFfJCREjoC3Oo"
+          "current_key": "AIzaSyBCz_sxqF5kPpxiwrUrAJvn5yveiBX2JmI"
         }
       ],
       "services": {
