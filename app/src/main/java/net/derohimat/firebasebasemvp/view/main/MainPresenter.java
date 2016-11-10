@@ -58,6 +58,11 @@ public class MainPresenter implements BasePresenter<MainMvpView> {
         };
     }
 
+    void doLogout(){
+        mAuth.signOut();
+        mPreferencesHelper.clear();
+    }
+
     void removeAuthListener() {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);

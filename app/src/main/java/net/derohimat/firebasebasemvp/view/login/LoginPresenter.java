@@ -44,6 +44,7 @@ public class LoginPresenter implements BasePresenter<LoginMvpView> {
         mAuthListener = firebaseAuth -> {
             FirebaseUser user = firebaseAuth.getCurrentUser();
             if (user != null) {
+                mEventBus.post(new LoginEvent(true, "User already signed in"));
                 Timber.d("user signed in", user.getDisplayName());
             } else {
                 Timber.d("user signed out");

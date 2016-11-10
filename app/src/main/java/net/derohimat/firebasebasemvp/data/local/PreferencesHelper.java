@@ -22,4 +22,8 @@ public class PreferencesHelper extends BasePreferenceUtils {
     public void setUserId(String userId) {
         mPref.edit().putString(KEY_USER_ID, userId).apply();
     }
+
+    public void clear() {
+        mPref.edit().clear().apply();
+    }
 }

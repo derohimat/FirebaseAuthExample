@@ -12,8 +12,10 @@ import com.google.firebase.auth.FirebaseUser;
 import net.derohimat.firebasebasemvp.R;
 import net.derohimat.firebasebasemvp.util.DialogFactory;
 import net.derohimat.firebasebasemvp.view.FireAuthBaseActivity;
+import net.derohimat.firebasebasemvp.view.login.LoginActivity;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by deroh on 23/05/2016.
@@ -23,7 +25,8 @@ public class MainActivity extends FireAuthBaseActivity implements MainMvpView {
     @Bind(R.id.inpEmail)
     EditText mInpEmail;
     private MainPresenter mPresenter;
-    private static ProgressBar mProgressBar = null;
+    ProgressBar mProgressBar = null;
+
 
     @Override
     protected int getResourceLayout() {
@@ -82,6 +85,12 @@ public class MainActivity extends FireAuthBaseActivity implements MainMvpView {
     public void onStop() {
         super.onStop();
         mPresenter.removeAuthListener();
+    }
+
+    @OnClick(R.id.btnLogout)
+    void logoutCLick() {
+        mPresenter.doLogout();
+        LoginActivity.start(mContext);
     }
 
     public static void start(Context context) {

@@ -1,6 +1,7 @@
 package net.derohimat.firebasebasemvp.view.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -64,17 +65,17 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
         String email = mInpEmail.getText().toString();
         String password = mInpPassword.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            mInpEmail.setError("Email masih kosong");
+            mInpEmail.setError("Email still empty");
             mInpEmail.setFocusable(true);
             return;
         }
         if (!Utils.isEmailValid(email)) {
-            mInpEmail.setError("Format Email salah");
+            mInpEmail.setError("Wrong email format");
             mInpEmail.setFocusable(true);
             return;
         }
         if (TextUtils.isEmpty(password)) {
-            mInpPassword.setError("Password masih kosong");
+            mInpPassword.setError("Password still empty");
             mInpPassword.setFocusable(true);
             return;
         }
@@ -134,6 +135,11 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView 
     @Override
     public void hideProgress() {
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
     }
 
     @Override

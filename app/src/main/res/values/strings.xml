@@ -10,7 +10,6 @@
     <string name="dialog_error_no_connection">Sorry, you need a connection to do that!</string>
     <string name="dialog_general_error_message">General Error</string>
     <string name="error_not_found">Not found</string>
-    <string name="error_loading_weather">error loading weather</string>
     <string name="generic_error_title">Ops! An error occurred.</string>
 
 </resources>

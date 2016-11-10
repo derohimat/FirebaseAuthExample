@@ -45,4 +45,15 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_double"
+        android:layout_marginRight="@dimen/spacing_double"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="@color/colorPrimary"
+        android:text="Sign Out"
+        android:textColor="@color/white"/>
+
 </LinearLayout>
