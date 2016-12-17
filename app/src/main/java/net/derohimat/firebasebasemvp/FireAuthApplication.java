@@ -6,24 +6,22 @@ import android.content.pm.ApplicationInfo;
 import android.support.annotation.VisibleForTesting;
 
 import com.facebook.FacebookSdk;
-
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
-import io.fabric.sdk.android.Fabric;
+
 import net.derohimat.firebasebasemvp.di.component.ApplicationComponent;
 import net.derohimat.firebasebasemvp.di.component.DaggerApplicationComponent;
 import net.derohimat.firebasebasemvp.di.module.ApplicationModule;
+import net.derohimat.firebasebasemvp.util.Constants;
 
+import io.fabric.sdk.android.Fabric;
 import rx.Scheduler;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
+import static net.derohimat.firebasebasemvp.util.Constants.TWITTER_SECRET;
+
 public class FireAuthApplication extends Application {
-
-    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    private static final String TWITTER_KEY = "cjFEI2GuVFXLu6d7rBfdSC0AY";
-    private static final String TWITTER_SECRET = "oJYpBck1O0nLZ4fsIUY6S8HwXaDqOWVy4GbavKifM0iocIauIl";
-
 
     private Scheduler mScheduler;
     private ApplicationComponent mApplicationComponent;
@@ -31,7 +29,7 @@ public class FireAuthApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(Constants.TWITTER_KEY, Constants.TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));
 
         FacebookSdk.sdkInitialize(getApplicationContext());
