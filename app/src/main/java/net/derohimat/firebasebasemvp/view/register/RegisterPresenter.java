@@ -19,7 +19,7 @@ import timber.log.Timber;
 /**
  * Created by derohimat on 23/05/2016.
  */
-public class RegisterPresenter implements BasePresenter<RegisterMvpView> {
+public class RegisterPresenter implements BasePresenter<RegisterView> {
 
     @Inject
     RegisterPresenter(Context context) {
@@ -32,11 +32,11 @@ public class RegisterPresenter implements BasePresenter<RegisterMvpView> {
     EventBus mEventBus;
 
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private RegisterMvpView mView;
+    private RegisterView mView;
 //    private Subscription mSubscription;
 
     @Override
-    public void attachView(RegisterMvpView view) {
+    public void attachView(RegisterView view) {
         mView = view;
         mAuthListener = firebaseAuth -> {
             FirebaseUser user = firebaseAuth.getCurrentUser();

@@ -25,7 +25,7 @@ import butterknife.OnClick;
 /**
  * Created by deroh on 23/05/2016.
  */
-public class ForgotActivity extends FireAuthBaseActivity implements ForgotMvpView {
+public class ForgotActivity extends FireAuthBaseActivity implements ForgotView {
 
     @Bind(R.id.inpEmail)
     EditText mInpEmail;

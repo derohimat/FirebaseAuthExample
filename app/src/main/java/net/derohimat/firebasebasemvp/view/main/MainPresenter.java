@@ -16,7 +16,7 @@ import timber.log.Timber;
 /**
  * Created by deroh on 23/05/2016.
  */
-public class MainPresenter implements BasePresenter<MainMvpView> {
+public class MainPresenter implements BasePresenter<MainView> {
 
     @Inject
     MainPresenter(Context context) {
@@ -29,11 +29,11 @@ public class MainPresenter implements BasePresenter<MainMvpView> {
     PreferencesHelper mPreferencesHelper;
 
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private MainMvpView mView;
+    private MainView mView;
 //    private Subscription mSubscription;
 
     @Override
-    public void attachView(MainMvpView view) {
+    public void attachView(MainView view) {
         mView = view;
     }
 

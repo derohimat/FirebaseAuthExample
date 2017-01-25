@@ -25,7 +25,7 @@ import timber.log.Timber;
 /**
  * Created by derohimat on 23/05/2016.
  */
-public class LoginPresenter implements BasePresenter<LoginMvpView> {
+public class LoginPresenter implements BasePresenter<LoginView> {
 
     @Inject
     LoginPresenter(Context context) {
@@ -42,11 +42,11 @@ public class LoginPresenter implements BasePresenter<LoginMvpView> {
 
     private Context mContext;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private LoginMvpView mView;
+    private LoginView mView;
 //    private Subscription mSubscription;
 
     @Override
-    public void attachView(LoginMvpView view) {
+    public void attachView(LoginView view) {
         mView = view;
         mAuthListener = firebaseAuth -> {
             FirebaseUser user = firebaseAuth.getCurrentUser();

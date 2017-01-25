@@ -19,7 +19,7 @@ import timber.log.Timber;
 /**
  * Created by deroh on 23/05/2016.
  */
-public class ForgotPresenter implements BasePresenter<ForgotMvpView> {
+public class ForgotPresenter implements BasePresenter<ForgotView> {
 
     @Inject
     ForgotPresenter(Context context) {
@@ -31,11 +31,11 @@ public class ForgotPresenter implements BasePresenter<ForgotMvpView> {
     @Inject
     FirebaseAuth mFirebase;
 
-    private ForgotMvpView mView;
+    private ForgotView mView;
 //    private Subscription mSubscription;
 
     @Override
-    public void attachView(ForgotMvpView view) {
+    public void attachView(ForgotView view) {
         mView = view;
     }
 
