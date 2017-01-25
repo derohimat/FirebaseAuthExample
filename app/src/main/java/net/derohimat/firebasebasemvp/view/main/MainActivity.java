@@ -20,7 +20,7 @@ import butterknife.OnClick;
 /**
  * Created by deroh on 23/05/2016.
  */
-public class MainActivity extends FireAuthBaseActivity implements MainMvpView {
+public class MainActivity extends FireAuthBaseActivity implements MainView {
 
     @Bind(R.id.inpEmail)
     EditText mInpEmail;

@@ -25,7 +25,7 @@ import butterknife.OnClick;
 /**
  * Created by derohimat on 23/05/2016.
  */
-public class RegisterActivity extends FireAuthBaseActivity implements RegisterMvpView {
+public class RegisterActivity extends FireAuthBaseActivity implements RegisterView {
 
     @Bind(R.id.inpFullName)
     EditText mInpFullName;

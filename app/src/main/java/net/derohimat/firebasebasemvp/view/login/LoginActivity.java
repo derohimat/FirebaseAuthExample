@@ -40,7 +40,7 @@ import timber.log.Timber;
 /**
  * Created by derohimat on 23/05/2016.
  */
-public class LoginActivity extends FireAuthBaseActivity implements LoginMvpView {
+public class LoginActivity extends FireAuthBaseActivity implements LoginView {
 
     @Bind(R.id.inpEmail)
     EditText mInpEmail;
