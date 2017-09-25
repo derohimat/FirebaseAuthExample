@@ -15,8 +15,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/spacing_normal"
                 android:layout_marginTop="@dimen/spacing_normal"
@@ -69,7 +69,7 @@
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/spacing_quadruple"
                     android:layout_marginTop="@dimen/spacing_double"
                     android:background="@color/colorPrimary"
                     android:text="Login"
@@ -92,7 +92,7 @@
                 <com.twitter.sdk.android.core.identity.TwitterLoginButton
                     android:id="@+id/twitter_login"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/spacing_quadruple"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/spacing_normal"/>
 
@@ -102,6 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/spacing_double"
+                    android:background="?selectableItemBackgroundBorderless"
                     android:text="Forgot your Password ?"/>
 
                 <TextView

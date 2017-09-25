@@ -11,7 +11,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="@dimen/spacing_triple"
         android:layout_marginRight="@dimen/spacing_triple"
-        android:layout_marginTop="@dimen/spacing_huge"
+        android:layout_marginTop="@dimen/spacing_quadruple"
         android:background="@color/silver"/>
 
     <LinearLayout
@@ -27,7 +27,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/spacing_double"
             android:text="This is your Profile Information"/>
 
         <android.support.design.widget.TextInputLayout
@@ -48,7 +47,7 @@
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/spacing_quadruple"
         android:layout_marginLeft="@dimen/spacing_double"
         android:layout_marginRight="@dimen/spacing_double"
         android:layout_marginTop="@dimen/spacing_normal"

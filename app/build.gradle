@@ -105,13 +105,16 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
 
     //Firebase
-    compile 'com.google.firebase:firebase-auth:9.8.0'
+    compile 'com.google.firebase:firebase-auth:10.2.1'
+
+    //Google+
+    compile 'com.google.android.gms:play-services-auth:10.2.1'
 
     //Facebook
     compile 'com.facebook.android:facebook-android-sdk:4.9.0'
 
     //Twitter
-    compile('com.twitter.sdk.android:twitter:2.1.1@aar') {
+    compile('com.twitter.sdk.android:twitter:2.3.2@aar') {
         transitive = true;
     }
 }

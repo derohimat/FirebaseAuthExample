@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "220844465981-4csf7fpd11v41lj5pggkr35gotd8b957.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.derohimat.firebasebasemvp",
+            "certificate_hash": "217699e3b5bc9301168e6f7efe6fd6cc10fcee38"
+          }
+        },
+        {
           "client_id": "220844465981-712gdhsl4q5qik4g8b5mm6gdbsnhfbb1.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,57 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220844465981-712gdhsl4q5qik4g8b5mm6gdbsnhfbb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220844465981:android:7337cb3973fa8499",
+        "android_client_info": {
+          "package_name": "net.derohimat.firebasedevcember"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220844465981-v5epkesn4kmmm6nq1ffl0q4tftcnanp5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.derohimat.firebasedevcember",
+            "certificate_hash": "293020db324b987fee72690df4ed69f3a9f750d4"
+          }
+        },
+        {
+          "client_id": "220844465981-712gdhsl4q5qik4g8b5mm6gdbsnhfbb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCz_sxqF5kPpxiwrUrAJvn5yveiBX2JmI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220844465981-712gdhsl4q5qik4g8b5mm6gdbsnhfbb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

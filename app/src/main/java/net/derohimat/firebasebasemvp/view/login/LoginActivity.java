@@ -50,7 +50,7 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginView {
     LoginButton mLoginFbButton;
     @Bind(R.id.twitter_login)
     TwitterLoginButton mTwitterLoginButton;
-    private LoginPresenter mPresenter;
+    @Inject LoginPresenter mPresenter;
     ProgressBar mProgressBar = null;
 
     @Inject
@@ -64,7 +64,6 @@ public class LoginActivity extends FireAuthBaseActivity implements LoginView {
 
     @Override
     protected void onViewReady(Bundle savedInstanceState) {
-        mPresenter = new LoginPresenter(this);
         mPresenter.attachView(this);
 
         getBaseActionBar().setElevation(0);

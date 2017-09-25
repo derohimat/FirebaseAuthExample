@@ -13,11 +13,8 @@ import dagger.Component;
 public interface ActivityComponent extends ApplicationComponent {
 
     void inject(LoginActivity loginActivity);
-
     void inject(RegisterActivity registerActivity);
-
     void inject(MainActivity mainActivity);
-
     void inject(ForgotActivity forgotActivity);
 
 }
